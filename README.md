@@ -5,7 +5,7 @@ This project is for Udacity's [Full Stack Web Developer Nanodegree](https://www.
 ## About the Project
 
 ### Project overview from Udacity
-You will take a baseline installation of a Linux server and prepare it to host your web applications. You will secure your server from a number of attack vectors, install and configure a database server, and deploy one of your existing web applications onto it.
+> You will take a baseline installation of a Linux server and prepare it to host your web applications. You will secure your server from a number of attack vectors, install and configure a database server, and deploy one of your existing web applications onto it.
 
 ### Related courses
 - [Linux Command Line Basics](https://www.udacity.com/course/linux-command-line-basics--ud595)
@@ -19,8 +19,8 @@ You will take a baseline installation of a Linux server and prepare it to host y
 #### Get your server.
 1. Start a new Ubuntu Linux server instance on [Amazon Lightsail](https://lightsail.aws.amazon.com/).
 2. Follow the instructions provided to SSH into your server.
-- On Networking section, add a new custom port 2200 with TCP protocol.
-- Click to "Account page" link and download default key.
+- Click to **Account page** link and download default key.
+- On **Networking** section, add a new custom port 2200 with TCP protocol.
 - Move key into the .ssh folder `mv ~/Downloads/LightsailDefaultPrivateKey-eu-west-2.pem
  ~/.ssh/udacity.pem`
 - Connect to the server with this key `ssh -i ~/.ssh/udacity.pem ubuntu@YOUR_SERVER_IP`
@@ -91,6 +91,13 @@ GRANT ALL ON SCHEMA public TO catalog;
 \q
 $ exit
 ```
+* Do not allow remote connections. Check **pg_hba.conf** file with `sudo nano /etc/postgresql/9.3/main/pg_hba.conf`. Make sure the output without the comment lines is the same with this:
+```
+local   all             postgres                                peer
+local   all             all                                     peer
+host    all             all             127.0.0.1/32            md5
+host    all             all             ::1/128                 md5                    
+```
 
 12. Install git. `sudo apt-get install git`
 
@@ -124,7 +131,7 @@ c. Setup virtual environment
 - Install necessary dependencies for the project `pip install httplib2 request oauth2client sqlalchemy psycopg2`
 
 
-14. Set it up in your server so that it functions correctly when visiting your server’s IP address in a browser. Make sure that your .git directory is not publicly accessible via a browser!
+14. Set it up in your server so that it functions correctly when visiting your server’s IP address in a browser.
 - Configure and enable a new virtual host:
 - Create a config file: `sudo nano /etc/apache2/sites-available/catalog.conf`
 - Paste this into the file and save
@@ -151,5 +158,10 @@ c. Setup virtual environment
 </VirtualHost>
 ```
 - Enable new virtual host `sudo a2ensite catalog`
-
 - Restart the Apache server with `sudo service apache2 restart`
+
+
+## Additional Resources
+- How To Deploy a Flask Application on an Ubuntu VPS [https://www.digitalocean.com/community/tutorials/how-to-deploy-a-flask-application-on-an-ubuntu-vps]
+- How To Secure PostgreSQL on an Ubuntu VPS [https://www.digitalocean.com/community/tutorials/how-to-secure-postgresql-on-an-ubuntu-vps]
+- Thanks to [iliketomatoes](https://github.com/iliketomatoes) for a helpful README.
