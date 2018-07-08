@@ -6,7 +6,15 @@ This project is for Udacity's [Full Stack Web Developer Nanodegree](https://www.
 
 ### Project overview
 
-I configured a Linux virtual machine to host Item Catalog app (built with Python/Flask as previous project of Full Stack Nanodegree) on an Apache web server. The deployed version of the app is now using PostgreSQL instead of SQLite.
+> You will take a baseline installation of a Linux server and prepare it to host your web applications. You will secure your server from a number of attack vectors, install and configure a database server, and deploy one of your existing web applications onto it.
+
+### Software used for this project
+
+* Linux
+* Apache
+* PostgreSQL
+* Python / Flask
+* mod_wsgi
 
 ### Related courses
 
